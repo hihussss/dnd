@@ -1,0 +1,115 @@
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    background-color: steelblue;
+    
+}
+
+.column {
+    width: 30%;
+    min-height: 300px;
+    margin: 5px;
+
+    background-color: lightgrey;
+
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.cart {
+    position: relative;
+    margin: 5px 5px;
+    min-height: 30px;
+
+    background-color: white;
+
+    border-radius: 4px;
+}
+
+.mousedown {
+    background-color: black;
+}
+
+.inputForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 5px;
+    
+    box-sizing: border-box;
+}
+
+.inputForm_del {
+    display: none
+}
+
+.input {
+    margin-left: 5px;
+    margin-right: 5px;
+    min-height: 60px;    
+}
+
+.button {
+    width: 75px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 2px;
+
+    background-color: green;
+    color: white;
+
+    border-radius: 4px;
+}
+
+.linkCard:hover {
+    background-color:black;
+    color: black;
+    opacity: 0.3;
+}
+
+
+.link {
+    text-decoration: none;
+    color: gray;
+}
+
+.link:hover {
+    text-decoration: underline;
+
+    
+}
+
+.plus {
+    color: gray
+}
+
+.boxCard {
+    display: flex;
+    position: relative;
+
+    width: 120px;
+
+    box-sizing: border-box;
+    
+}
+
+.icon {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    width: 35px;
+    height: 35px;
+
+    background-image: url("../image/Krestik.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.selected {
+    opacity: 0.6;
+
+    cursor: grab;
+}
