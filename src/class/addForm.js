@@ -1,64 +1,75 @@
-export class addFrom {
+import { Card } from "./Card.js";
 
-    constructor() {
-        this.border = document.body
+export class addForm {
+
+    constructor(column) {
+        this.column = column
+        this.init()
     }
 
-    addFormColumn() {
-        const form = document.createElement('div')
-        form.classList.add('form')
-        this.border.appendChild(form)
-        for (let i = 0; i < 3; i++) {
-            const column = document.createElement('div')
-            column.classList.add('column')
-            form.appendChild(column)
-        }
-    }
-
-    addCard(text) {
-        const card = document.createElement('div')
-        card.classList.add('cart')
-        card.innerHTML = `<p>${text}</p>`
-        return card
-    }
-
-    addLinkCard() {
-        const linkCard = document.createElement('div')
-        linkCard.classList.add('linkCard')
-        const plus = document.createElement('span')
-        plus.classList.add('plus')
-        plus.textContent = '+'
-        const link = document.createElement('a')
-        link.classList.add('link')
-        link.textContent = 'Add another cart'
-        link.setAttribute('href', '#')
-        linkCard.appendChild(plus)
-        linkCard.appendChild(link)
-        return linkCard
+    init() {
+        this.createForm()
+        this.addListener()
         
     }
 
-    addInputText(){
-        const inputForm = document.createElement('form')
-        inputForm.classList.add('inputForm')
-        const input = document.createElement('input')
-        input.classList.add('input')
-        input.placeholder = "Enter a title for this card..."
-        input.setAttribute('type', 'text')
-        const boxCard =  document.createElement('div')
-        boxCard.classList.add('boxCard')
-        const button = document.createElement('button')
-        button.classList.add('button')
-        button.textContent = 'Add Card'
-        boxCard.appendChild(button)
-        inputForm.appendChild(input)
-        inputForm.appendChild(boxCard)
-        return inputForm
-    }
+    
+    createForm(){
+        this.formBox = document.createElement("div");
+        this.formBox.className = "form-box";
 
-    addIconDelete(){
-        const icon = document.createElement("div")
-        icon.classList.add("icon")
-        return icon
+    
+        this.elAdd = document.createElement("div");
+        this.elAdd.className = "btn-form-visible active";
+        this.elAdd.textContent = "+ Add task";
+
+    
+        this.form = document.createElement("form");
+        this.form.className = "form-field";
+
+        this.formBox.append(this.elAdd);
+        this.formBox.append(this.form);
+
+        const contentForm = `<textarea placeholder="add" rows="3"></textarea>
+            <div class="form-btn-box">
+                <button>add</button>
+                <button type="reset">&#215;</button>
+            </div>`;
+
+        this.form.insertAdjacentHTML("beforeend", contentForm);
+        
     }
+    
+    addListener() {
+        
+        this.elAdd.addEventListener("click", this.onOpenForm.bind(this));
+        
+        this.form.addEventListener("submit", this.onSubmitForm.bind(this));
+        
+        this.form.addEventListener("reset", this.onCloseForm.bind(this));
+      }
+    
+      onOpenForm() {
+        this.elAdd.classList.remove("active");
+        this.form.classList.add("active");
+      }
+    
+      onSubmitForm(e) {
+        e.preventDefault();
+        
+        const text = this.form.querySelector("textarea").value.trim();
+        if (text) {
+          const newCard = new Card(text);
+          this.column.querySelector(".cards-list").append(newCard.card);
+        }
+        this.onCloseForm();
+      }
+    
+      onCloseForm() {
+        this.form.reset();
+        this.elAdd.classList.add("active");
+        this.form.classList.remove("active");
+      }
+
+    
 }
